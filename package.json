@@ -1,0 +1,23 @@
+{
+  "name": "broccoli-replicate",
+  "version": "0.0.0",
+  "description": "Duplicate a directory into one or more other paths and return a tree with all duplicated paths represented",
+  "main": "index.js",
+  "scripts": {
+    "test": "jshint index.js && broccoli build temp && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ksnyde/broccoli-replicate.git"
+  },
+  "keywords": [
+    "broccoli",
+    "broccoli-plugin"
+  ],
+  "author": "Ken Snyder <ken@ken.net> (http://ken.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ksnyde/broccoli-replicate/issues"
+  },
+  "homepage": "https://github.com/ksnyde/broccoli-replicate"
+}
