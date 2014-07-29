@@ -1,4 +1,4 @@
-#broccoli-replicate
+#broccoli-replicate ![ ](https://travis-ci.org/ksnyde/broccoli-replicate.svg)
 *A [broccoli](https://github.com/joliss/broccoli) plugin that replicates a directory across one or more paths*
 
 ## Installation ##
