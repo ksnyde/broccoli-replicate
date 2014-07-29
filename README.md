@@ -35,7 +35,7 @@ In the example the `style` directory would be converted into a broccoli tree, an
 ## Code Documentation
 Documentation of the plugin can be found here:
 
-> [broccoli-docco](http://htmlpreview.github.io/?https://github.com/ksnyde/broccoli-replicate/blob/master/docs/index.html)
+> [broccoli-replicate](http://htmlpreview.github.io/?https://github.com/ksnyde/broccoli-replicate/blob/master/docs/index.html)
 
 ----
 Happy trails,

@@ -1,6 +1,6 @@
 {
   "name": "broccoli-replicate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Duplicate a directory into one or more other paths",
   "main": "index.js",
   "scripts": {

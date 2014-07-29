@@ -1,6 +1,6 @@
 #Changelog
 
-## 0.0.2
+## 0.0.3
 
 - Updated README to correct minor text mistake
 - Added changelog
