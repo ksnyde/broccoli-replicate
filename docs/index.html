@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>index.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Brocfile.html">
+                Brocfile.js
+              </a>
+            
+              
+              <a class="source" href="index.html">
+                index.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>index.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p><img src="replicate.png" alt=" "></p>
+<h1 id="broccoli-replicate">broccoli-replicate</h1>
+<blockquote>
+<p>a subclass of <a href="https://github.com/broccolijs/broccoli-writer">broccoli-writer</a> </p>
+</blockquote>
+<p><em>Replicate the input tree to one or more output paths</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> 
+	Writer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'broccoli-writer'</span>),
+	fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>),
+	path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>),
+	pickFiles = <span class="hljs-built_in">require</span>(<span class="hljs-string">'broccoli-static-compiler'</span>),
+	RSVP = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rsvp'</span>),
+	wrench = requie(<span class="hljs-string">'wrench'</span>),
+	debug = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'broccoli:replicate'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="class-prototype">Class Prototype</h2>
+<p>Parameters:</p>
+<ul>
+<li><code>inputTree</code> - the input tree which is the source of the replication</li>
+<li><code>paths</code> - an array of paths which the <em>inputTree</em> will be replicated to</li>
+<li><code>options</code> - an options hash to configure behaviour, key hash options include:<ul>
+<li><code>destDir</code> - the base directory to write the documentation to; defaults to ‘/docs’</li>
+<li><code>docco</code> - the Docco package provides an options hash which is proxied to this property</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Replicator</span><span class="hljs-params">(inputTree, paths, options)</span> </span>{
+<span class="hljs-pi">	'use strict'</span>;
+	
+	<span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Replicator)) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Replicator(inputTree, options);
+	}
+  
+	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> inputTree === <span class="hljs-string">'string'</span>) {
+		debug(<span class="hljs-string">'Input tree is a string, converting to tree'</span>);
+		<span class="hljs-keyword">this</span>.inputTree = pickFiles(inputTree, {
+			srcDir: <span class="hljs-string">'/'</span>,
+			destDir: <span class="hljs-string">'/'</span>
+		});
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">this</span>.inputTree = inputTree; <span class="hljs-comment">// assumed to be a tree object</span>
+	}
+	<span class="hljs-comment">/* TODO: make this defaulting pattern prettier ... must be a common way of doing this in JS-land */</span>
+	options = options || {};
+	<span class="hljs-keyword">this</span>.paths = paths || [];	
+	debug(<span class="hljs-string">'Replicator paths are '</span>, <span class="hljs-keyword">this</span>.paths);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Extends <code>broccoli-writer</code> class</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Replicator.prototype = <span class="hljs-built_in">Object</span>.create(Writer.prototype);
+Replicator.prototype.constructor = Replicator;
+Replicator.prototype.description = <span class="hljs-string">'Broccoli replicator'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Modules Export</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = Replicator;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2 id="write">write</h2>
+<p>extending the broccoli-writer’s required <code>write</code> method</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Replicator.prototype.write = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(readTree, destDir)</span> </span>{
+<span class="hljs-pi">	'use strict'</span>;
+	<span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>wait for event/file change and then respond</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">return</span> readTree(<span class="hljs-keyword">this</span>.inputTree).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(srcDir)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>return a promise to Broccoli so that it waits for the async processes to complete </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> RSVP.Promise(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(resolve,reject)</span> </span>{
+			debug(<span class="hljs-string">'Operating directory: '</span> + path.resolve(<span class="hljs-string">'.'</span>));
+			debug(<span class="hljs-string">'Source directory: '</span> + srcDir);
+			debug(<span class="hljs-string">'Destination directory: '</span> + destDir);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Iterate through each path</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">this</span>.paths.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(path)</span>) </span>{
+				path = path.join(destDir,path);
+				<span class="hljs-keyword">try</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>use <code>wrench</code> to copy to broccoli destination directory</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>					wrench.copyDirSyncRecursive(srcDir, path, self.options);
+				} <span class="hljs-keyword">catch</span> (e) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Failure</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>					reject(e);
+				}
+			};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Success</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			resolve();
+		});
+	});
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

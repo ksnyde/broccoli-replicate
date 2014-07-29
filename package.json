@@ -1,10 +1,10 @@
 {
   "name": "broccoli-replicate",
-  "version": "0.0.0",
-  "description": "Duplicate a directory into one or more other paths and return a tree with all duplicated paths represented",
+  "version": "0.0.1",
+  "description": "Duplicate a directory into one or more other paths",
   "main": "index.js",
   "scripts": {
-    "test": "jshint index.js && broccoli build temp && mocha"
+    "test": "jshint index.js && broccoli build test && mocha"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,17 @@
   "bugs": {
     "url": "https://github.com/ksnyde/broccoli-replicate/issues"
   },
-  "homepage": "https://github.com/ksnyde/broccoli-replicate"
+  "homepage": "https://github.com/ksnyde/broccoli-replicate",
+  "devDependencies": {
+    "broccoli": "^0.12.3",
+    "broccoli-static-compiler": "^0.1.4",
+    "mocha": "^1.21.3",
+    "rimraf": "^2.2.8"
+  },
+  "dependencies": {
+    "broccoli-writer": "^0.1.1",
+    "debug": "^1.0.4",
+    "rsvp": "^3.0.9",
+    "wrench": "^1.5.8"
+  }
 }
